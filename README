@@ -1,0 +1,14 @@
+DEV ENVIRONMENT SETUP INSTRUCTIONS
+
+1. HOW TO SETUP BASH SHELL
+
+Just add the following line to your current ~/.bash_profile or other variant file:
+
+source ~/.bash_dev_rc
+
+1. HOW TO SETUP VIM SETTINGS
+
+Just add the following line to your current ~/.vimrc (Linux) or ~/_vimrc (windows):
+
+source ~/.vim_dev_rc
+

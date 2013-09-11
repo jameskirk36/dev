@@ -46,6 +46,8 @@
 #9. executable with setgid bit set
 #10. directory writable to others, with sticky bit
 #11. directory writable to others, without sticky
+
+# Git stuff
 # Git branch in prompt.
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
@@ -53,9 +55,5 @@ parse_git_branch() {
 
 export CLICOLOR=1
 export LSCOLORS=fxCxCxDaBxegedabagaced
-export PS1="\[\e[34;1m\]\u@\[\e[32;1m\]\w> \[\e[0m\] \$(parse_git_branch)"
+export PS1="\[\e[34;1m\]\u@\[\e[32;1m\]\w>\[\e[0m\]\$(parse_git_branch) $ "
 alias ll="ls -l"
-
-#adding riak to path
-#export PATH=$PATH:~/Dev/riak/rel/riak/bin
-export PATH=$PATH:~/Dev/play-2.1.1
