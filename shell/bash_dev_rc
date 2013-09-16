@@ -47,13 +47,37 @@
 #10. directory writable to others, with sticky bit
 #11. directory writable to others, without sticky
 
+export CLICOLOR=1
+export LSCOLORS=fxCxCxDaBxegedabagaced
+
+# LS_COLORS
+#LS_COLORS='di=1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:*.deb=90'
+#The parameters for LS_COLORS (di, fi, ln, pi, etc) refer to different file types:
+#
+#di	 Directory
+#fi	 File
+#ln	 Symbolic Link
+#pi	 Fifo file
+#so	 Socket file
+#bd	 Block (buffered) special file
+#cd	 Character (unbuffered) special file
+#or	 Symbolic Link pointing to a non-existent file (orphan)
+#mi	 Non-existent file pointed to by a symbolic link (visible when you type ls -l)
+#ex	 File which is executable (ie. has 'x' set in permissions).
+#
+#The *.deb=90 parameter in the example above tells ls to display any files ending with a .deb extension using the color specified, 90 or dark grey in this case. This can be applied to any types of files (eg. you could use *.jpg=33 to make JPEG files appear orange). Any number of parameters can go into the LS_COLORS variable, as long as the parameters are separated by colons.
+
+LS_COLORS='di=35;1:ln=36;1:ex=31;1'
+export LS_COLORS
+
 # Git stuff
 # Git branch in prompt.
+
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-export CLICOLOR=1
-export LSCOLORS=fxCxCxDaBxegedabagaced
-export PS1="\[\e[34;1m\]\u@\[\e[32;1m\]\w>\[\e[0m\]\$(parse_git_branch) $ "
+export PS1="\[\e[34;1;1m\]\u@\[\e[32;1m\]\w>\[\e[0m\]\$(parse_git_branch) $ "
+
 alias ll="ls -l"
+alias ls="ls --color=auto"
