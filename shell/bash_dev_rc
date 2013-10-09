@@ -81,3 +81,4 @@ export PS1="\[\e[34;1;1m\]\u@\[\e[32;1m\]\w>\[\e[0m\]\$(parse_git_branch) $ "
 
 alias ll="ls -l"
 alias ls="ls --color=auto"
+alias la="find . | more"
