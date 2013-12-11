@@ -5,13 +5,35 @@ syntax on
 
 " Key mappings 
 let mapleader="-"
+" ===================================
+" ======== ALL MODE MAPPINGS ========
+" ===================================
+" Disable the left,right,up,down arrows 
+noremap <left> <nop>
+noremap <right> <nop>
+noremap <up> <nop>
+noremap <down> <nop>
+" ===================================
+" ===== NORMAL MODE MAPPINGS ========
+" ===================================
+
 " Open vim rc file
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " Apply recently changed vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" ===================================
+" ===== VISUAL MODE MAPPINGS ========
+" ===================================
+
 " wrap the current visual selection in speech marks
 vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>
 " wrap the current visual selection in single quotes 
 vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>
+
+" ===================================
+" ===== INSERT MODE MAPPINGS ========
+" ===================================
+
 " replace @@<space> with email (when in insert mode) 
 iabbrev @@ james.kirk84@gmail.com
