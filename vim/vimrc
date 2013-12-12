@@ -37,3 +37,9 @@ vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>
 
 " replace @@<space> with email (when in insert mode) 
 iabbrev @@ james.kirk84@gmail.com
+
+" language specific comment-line 
+autocmd FileType ruby,python nnoremap <buffer> <leader>cl I#<esc>
+autocmd FileType cpp,cs,javascript,scala nnoremap <buffer> <leader>cl I//<esc>
+" language specific comment-visual selection
+autocmd FileType cpp,cs,javascript,scala vnoremap <buffer> <leader>cv <esc>`<i/*<esc>`>2la*/<esc>
