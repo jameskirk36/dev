@@ -3,6 +3,15 @@ set tabstop=3
 source ~/.vim/syntax/scala.vim
 syntax on
 
+" GVIM specific settings
+if has("gui_running")
+	set lines=70 columns=150
+	source $VIMRUNTIME/mswin.vim
+	set guifont=Lucida_Console:h11
+	colorscheme slate
+end
+	
+
 " Key mappings 
 let mapleader="-"
 " ===================================
