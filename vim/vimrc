@@ -11,6 +11,22 @@ if has("gui_running")
 	colorscheme slate
 end
 	
+" Searching 
+set incsearch " enable incremental search highlighting
+set hlsearch " highlight search results 
+hi Search guibg=Purple 
+hi Search guifg=White
+
+" Key mappings 
+let mapleader="-"
+" ===================================
+" ======== ALL MODE MAPPINGS ========
+" ===================================
+" Disable the left,right,up,down arrows 
+noremap <left> <nop>
+noremap <right> <nop>
+noremap <up> <nop>
+noremap <down> <nop>
 
 " Key mappings 
 let mapleader="-"
@@ -30,6 +46,8 @@ noremap <down> <nop>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " Apply recently changed vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
+" get out of highlighted search
+nnoremap <CR> :nohlsearch<CR><CR>
 
 " ===================================
 " ===== VISUAL MODE MAPPINGS ========
