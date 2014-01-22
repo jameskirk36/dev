@@ -2,6 +2,15 @@ set nu
 set tabstop=3
 source ~/.vim/syntax/scala.vim
 syntax on
+
+" Vimscript file settings ------------------------- {{{
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
+
+" Status Line -------------------------------- {{{
 set noruler 
 set laststatus=2 			"turn statusline on
 set statusline=%.40f          " relative path to the file (limit of 40 chars)
@@ -9,70 +18,65 @@ set statusline+=\ %y        " Filetype of the file
 set statusline+=\ %h%m%r   " display flags
 set statusline+=%=     " switch to the right hand side
 set statusline+=Current:\ %-4l\ Total:\ %-4L " current and total lines
+" }}}
 
-" GVIM specific settings
+" GVIM settings {{{ 
 if has("gui_running")
 	set lines=70 columns=150
 	source $VIMRUNTIME/mswin.vim
 	set guifont=Lucida_Console:h11
 	colorscheme slate
 end
+" }}}
 	
-" Searching 
+" Searching {{{
 set incsearch " enable incremental search highlighting
 set hlsearch " highlight search results 
 hi Search guibg=Purple 
 hi Search guifg=White
+" }}}
 
 " Key mappings 
 let mapleader="-"
-" ===================================
-" ======== ALL MODE MAPPINGS ========
-" ===================================
+" Key mappings: All Modes {{{
 " Disable the left,right,up,down arrows 
 noremap <left> <nop>
 noremap <right> <nop>
 noremap <up> <nop>
 noremap <down> <nop>
-" ===================================
-" ===== NORMAL MODE MAPPINGS ========
-" ===================================
+" }}}
 
+" Key mappings: normal mode {{{ 
 " Open vim rc file
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " Apply recently changed vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
 " get out of highlighted search
 nnoremap <CR> :nohlsearch<CR><CR>
+" }}}
 
-" ===================================
-" ===== VISUAL MODE MAPPINGS ========
-" ===================================
+" Key mappings: Visual mode {{{ 
 
 " Wrap visual selection in user provided arguments
+vnoremap <leader>vw <esc>:VisualWrap<space>
+" Custom command for calling WrapFunc helper
 command! -nargs=* VisualWrap call WrapFunc(<f-args>)
+" helper function for visual wrap (above)
 function! WrapFunc(start, end)
 	execute "normal `<i" . a:start . "\<esc>`>la" . a:end . "\<esc>"
 endfunction
+" }}}
 
-vnoremap <leader>vw <esc>:VisualWrap<space>
-" ===================================
-" ===== INSERT MODE MAPPINGS ========
-" ===================================
 
+" Abbreviations: Insert mode {{{
 " replace @@<space> with email (when in insert mode) 
 iabbrev @@ james.kirk84@gmail.com
-
-" language specific comment-line 
-autocmd FileType ruby,python nnoremap <buffer> <leader>cl I#<esc>
-autocmd FileType cpp,cs,javascript,scala nnoremap <buffer> <leader>cl I//<esc>
-" language specific comment-visual selection
-autocmd FileType cpp,cs,javascript,scala vnoremap <buffer> <leader>cv <esc>`<i/*<esc>`>2la*/<esc>
+" }}}
 
 " csharp commands
 iabbrev <buffer> iff if ()<cr>{<cr>}<up><up><right><right><right>
 
-" language specific comment-line 
+" language specific comment-line {{{
 augroup commenting
 	" clear autocommands in group
 	autocmd! 
@@ -81,6 +85,9 @@ augroup commenting
 	" language specific comment-visual selection
 	autocmd FileType cpp,cs,javascript,scala vnoremap <buffer> <leader>cv <esc>`<i/*<esc>`>2la*/<esc>
 augroup END
+" }}}
+
+" Ruby specifc stuff {{{
 augroup RubySetup
 	" clear autocommands in group
 	autocmd!
@@ -91,10 +98,11 @@ augroup RubySetup
 	" new test
 	autocmd FileType ruby nnoremap <buffer> <leader>nt Idescribe<space>func<space>do<cr>end<esc>?func<cr>
 augroup END
+" }}}
 
-
+" Example Operator mappings {{{
 augroup OperatorMappings
 	" inside heading example
 	autocmd BufRead onoremap ih :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<cr>
 augroup END
-
+" }}}
