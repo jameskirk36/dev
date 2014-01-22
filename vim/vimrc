@@ -27,17 +27,6 @@ noremap <left> <nop>
 noremap <right> <nop>
 noremap <up> <nop>
 noremap <down> <nop>
-
-" Key mappings 
-let mapleader="-"
-" ===================================
-" ======== ALL MODE MAPPINGS ========
-" ===================================
-" Disable the left,right,up,down arrows 
-noremap <left> <nop>
-noremap <right> <nop>
-noremap <up> <nop>
-noremap <down> <nop>
 " ===================================
 " ===== NORMAL MODE MAPPINGS ========
 " ===================================
@@ -54,9 +43,9 @@ nnoremap <CR> :nohlsearch<CR><CR>
 " ===================================
 
 " wrap the current visual selection in speech marks
-vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>
+vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
 " wrap the current visual selection in single quotes 
-vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>
+vnoremap <leader>' <esc>`<i'<esc>`>a'<esc>
 
 " ===================================
 " ===== INSERT MODE MAPPINGS ========
@@ -70,3 +59,21 @@ autocmd FileType ruby,python nnoremap <buffer> <leader>cl I#<esc>
 autocmd FileType cpp,cs,javascript,scala nnoremap <buffer> <leader>cl I//<esc>
 " language specific comment-visual selection
 autocmd FileType cpp,cs,javascript,scala vnoremap <buffer> <leader>cv <esc>`<i/*<esc>`>2la*/<esc>
+
+" csharp commands
+iabbrev <buffer> iff if ()<cr>{<cr>}<up><up><right><right><right>
+
+
+autocmd BufNewFile,BufRead *.rspec set syntax=ruby
+
+
+" ====================================
+" ========== CUSTOM COMMANDS =========
+" ====================================
+command! -nargs=1 VisualWrap :normal `<i<args><esc>`>a<args><esc>
+
+
+" ====================================
+" ======= COMMAND MAPPINGS ===========
+" ====================================
+vnoremap <leader>vw <esc>:VisualWrap<space>
