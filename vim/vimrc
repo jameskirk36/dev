@@ -4,11 +4,10 @@ source ~/.vim/syntax/scala.vim
 syntax on
 set noruler 
 set laststatus=2 			"turn statusline on
-set statusline=%f         " Path to the file
+set statusline=%.40f         " relative path to the file (limit of 40 chars)
 set statusline+=\ %y        " Filetype of the file
-set statusline+=\ %l    " Current line
-set statusline+=/    " Separator
-set statusline+=%L   " Total lines
+set statusline+=%=     " switch to the right hand side
+set statusline+=Current:\ %-4l\ Total:\ %-4L " current and total lines
 
 " GVIM specific settings
 if has("gui_running")
