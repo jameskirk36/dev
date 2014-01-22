@@ -42,11 +42,13 @@ nnoremap <CR> :nohlsearch<CR><CR>
 " ===== VISUAL MODE MAPPINGS ========
 " ===================================
 
-" wrap the current visual selection in speech marks
-vnoremap <leader>" <esc>`<i"<esc>`>a"<esc>
-" wrap the current visual selection in single quotes 
-vnoremap <leader>' <esc>`<i'<esc>`>a'<esc>
+" Wrap visual selection in user provided arguments
+command! -nargs=* VisualWrap call WrapFunc(<f-args>)
+function! WrapFunc(start, end)
+	execute "normal `<i" . a:start . "\<esc>`>la" . a:end . "\<esc>"
+endfunction
 
+vnoremap <leader>vw <esc>:VisualWrap<space>
 " ===================================
 " ===== INSERT MODE MAPPINGS ========
 " ===================================
@@ -63,17 +65,29 @@ autocmd FileType cpp,cs,javascript,scala vnoremap <buffer> <leader>cv <esc>`<i/*
 " csharp commands
 iabbrev <buffer> iff if ()<cr>{<cr>}<up><up><right><right><right>
 
+" language specific comment-line 
+augroup commenting
+	" clear autocommands in group
+	autocmd! 
+	autocmd FileType ruby,python nnoremap <buffer> <leader>cl I#<esc>
+	autocmd FileType cpp,cs,javascript,scala nnoremap <buffer> <leader>cl I//<esc>
+	" language specific comment-visual selection
+	autocmd FileType cpp,cs,javascript,scala vnoremap <buffer> <leader>cv <esc>`<i/*<esc>`>2la*/<esc>
+augroup END
+augroup RubySetup
+	" clear autocommands in group
+	autocmd!
+	autocmd BufRead,BufNewFile *.rspec set filetype=ruby
+		
+	" run rspec on current file
+	autocmd FileType ruby nnoremap <buffer> <leader>rt :!rspec<space><c-r>%<cr>
+	" new test
+	autocmd FileType ruby nnoremap <buffer> <leader>nt Idescribe<space>func<space>do<cr>end<esc>?func<cr>
+augroup END
 
-autocmd BufNewFile,BufRead *.rspec set syntax=ruby
 
+augroup OperatorMappings
+	" inside heading example
+	autocmd BufRead onoremap ih :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<cr>
+augroup END
 
-" ====================================
-" ========== CUSTOM COMMANDS =========
-" ====================================
-command! -nargs=1 VisualWrap :normal `<i<args><esc>`>a<args><esc>
-
-
-" ====================================
-" ======= COMMAND MAPPINGS ===========
-" ====================================
-vnoremap <leader>vw <esc>:VisualWrap<space>
