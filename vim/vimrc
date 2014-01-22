@@ -2,6 +2,13 @@ set nu
 set tabstop=3
 source ~/.vim/syntax/scala.vim
 syntax on
+set noruler 
+set laststatus=2 			"turn statusline on
+set statusline=%f         " Path to the file
+set statusline+=\ %y        " Filetype of the file
+set statusline+=\ %l    " Current line
+set statusline+=/    " Separator
+set statusline+=%L   " Total lines
 
 " GVIM specific settings
 if has("gui_running")
