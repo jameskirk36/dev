@@ -3,12 +3,6 @@ set tabstop=3
 source ~/.vim/syntax/scala.vim
 syntax on
 
-" Vimscript file settings ------------------------- {{{
-augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-augroup END
-" }}}
 
 " Status Line -------------------------------- {{{
 set noruler 
@@ -20,22 +14,40 @@ set statusline+=%=     " switch to the right hand side
 set statusline+=Current:\ %-4l\ Total:\ %-4L " current and total lines
 " }}}
 
-" GVIM settings {{{ 
+" Layout and Colours {{{
 if has("gui_running")
+" GUI {{{
 	set lines=70 columns=150
 	source $VIMRUNTIME/mswin.vim
 	set guifont=Lucida_Console:h11
 	colorscheme slate
+	" Search colour
+	highlight Search guibg=Yellow guifg=Black
+	" Folded fold colour
+	highlight Folded guibg=Black guifg=Blue
+	" Word completion menu colour
+	highlight Pmenu guibg=Magenta guifg=White
+	" Word completion current selection colour
+	highlight PmenuSel guibg=White guifg=Black
+" }}}
+else
+" Console {{{
+	" Search colour
+	highlight Search ctermbg=Yellow ctermfg=Black 
+	" Folded fold colour
+	highlight Folded ctermbg=Black ctermfg=Blue
+	" Word completion menu colour
+	highlight Pmenu ctermbg=Magenta ctermfg=White
+	" Word completion current selection colour
+	highlight PmenuSel ctermbg=White ctermfg=Black
+" }}}
 end
 " }}}
 	
 " Searching {{{
 set incsearch " enable incremental search highlighting
 set hlsearch " highlight search results 
-hi Search guibg=Purple 
-hi Search guifg=White
 " }}}
-
 " Key mappings 
 let mapleader="-"
 " Key mappings: All Modes {{{
@@ -73,30 +85,79 @@ endfunction
 iabbrev @@ james.kirk84@gmail.com
 " }}}
 
-" csharp commands
-iabbrev <buffer> iff if ()<cr>{<cr>}<up><up><right><right><right>
 
 " language specific comment-line {{{
-augroup commenting
+augroup GenericCommenting
 	" clear autocommands in group
 	autocmd! 
-	autocmd FileType ruby,python nnoremap <buffer> <leader>cl I#<esc>
-	autocmd FileType cpp,cs,javascript,scala nnoremap <buffer> <leader>cl I//<esc>
+	autocmd FileType cs,cpp,javascript,scala let b:comment = "//"
+	
+	" comment current line using comment variable set by current buffer filetype
+	autocmd FileType * nnoremap <buffer> <leader>cl :<c-u>execute "normal I" . b:comment<cr>
 	" language specific comment-visual selection
-	autocmd FileType cpp,cs,javascript,scala vnoremap <buffer> <leader>cv <esc>`<i/*<esc>`>2la*/<esc>
+	"autocmd FileType cpp,cs,javascript,scala vnoremap <buffer> <leader>cv <esc>`<i/*<esc>`>2la*/<esc>
 augroup END
 " }}}
 
-" Ruby specifc stuff {{{
-augroup RubySetup
+" Vimscript specific ------------------------- {{{
+augroup VimscriptSpecific
+   autocmd!
+	" Comment char
+	autocmd FileType vim let b:comment = "\" "
+   autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
+
+" Ruby specific {{{
+augroup RubySpecific
 	" clear autocommands in group
 	autocmd!
 	autocmd BufRead,BufNewFile *.rspec set filetype=ruby
+	" comment char
+	autocmd FileType ruby let b:comment = "#"
 		
 	" run rspec on current file
 	autocmd FileType ruby nnoremap <buffer> <leader>rt :!rspec<space><c-r>%<cr>
 	" new test
 	autocmd FileType ruby nnoremap <buffer> <leader>nt Idescribe<space>func<space>do<cr>end<esc>?func<cr>
+augroup END
+" }}}
+
+" Python specific {{{
+augroup PythonSpecific
+	autocmd!
+	" comment char
+	autocmd FileType python let b:comment = "#"
+augroup END
+" }}}
+" C++ specific {{{
+augroup CPPSpecific
+	autocmd!
+	" comment char
+	autocmd FileType cpp let b:comment = "//"
+augroup END
+" }}}
+" C# specific {{{
+augroup CSharpSpecific
+	autocmd!
+	" comment char
+	autocmd FileType cs let b:comment = "//"
+	" abbreviation for insert mode to create empty if statement
+	autocmd FileType cs execute "iabbrev <buffer> iff if ()<cr>{<cr>}<up><up><right><right><right>"
+augroup END
+" }}}
+" Scala specific {{{
+augroup ScalaSpecific
+	autocmd!
+	" comment char
+	autocmd FileType scala let b:comment = "//"
+augroup END
+" }}}
+" Javascript specific {{{
+augroup JavascriptSpecific
+	autocmd!
+	" comment char
+	autocmd FileType javascript let b:comment = "//"
 augroup END
 " }}}
 
