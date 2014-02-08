@@ -1,0 +1,5 @@
+# Exuberant C-tags configuration settings
+# Basic options
+--recurse=yes
+--tag-relative=yes
+--exclude=.git
