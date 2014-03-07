@@ -1,4 +1,5 @@
 set nu
+set runtimepath+=$HOME/.vim/tagbar
 set tabstop=3
 source ~/.vim/syntax/scala.vim
 syntax on
@@ -65,11 +66,19 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 " get out of highlighted search
 nnoremap <CR> :nohlsearch<CR><CR>
+" Split current line into multiple lines on string {{{
+nnoremap <leader>sl <esc><S-V><esc>:SplitAtString<space>
+" Custom command for calling SplitAtString function
+command! -nargs=1 SplitAtString call SplitAtStringFunc(<f-args>)
+" Function for split line at string (expects only one argument)
+function! SplitAtStringFunc(splitStr)
+	call ReplaceStringFunc(a:splitStr, "\r")
+endfunction
+" }}}
 " }}}
 
 " Key mappings: Visual mode {{{ 
-
-" Wrap visual selection in user provided arguments
+" Wrap visual selection in user provided arguments {{{
 vnoremap <leader>vw <esc>:VisualWrap<space>
 " Custom command for calling WrapFunc helper
 command! -nargs=* VisualWrap call WrapFunc(<f-args>)
@@ -78,7 +87,25 @@ function! WrapFunc(start, end)
 	execute "normal `<i" . a:start . "\<esc>`>la" . a:end . "\<esc>"
 endfunction
 " }}}
-
+" Replace strings in visual selection {{{
+vnoremap <leader>rs <esc>:ReplaceString<space>
+" Custom command for calling ReplaceStringFunc with multiple arguments (only two are expected though) 
+command! -nargs=* ReplaceString call ReplaceStringFunc(<f-args>)
+" helper function for replace command
+function! ReplaceStringFunc(findThisStr, replaceWithThisStr)
+	execute ":'<,'>s`" . a:findThisStr . "`" . a:replaceWithThisStr . "`g"
+endfunction
+" }}}
+" Replace strings in visual selection with confirmation {{{
+vnoremap <leader>rsc <esc>:ReplaceStringConfirm<space>
+" Custom command for calling ReplaceStringFunc helper
+command! -nargs=* ReplaceStringConfirm call ReplaceStringWithConfirm(<f-args>)
+" helper function for visual wrap (above)
+function! ReplaceStringWithConfirm(findThisStr, replaceWithThisStr)
+	execute ":'<,'>s`" . a:findThisStr . "`" . a:replaceWithThisStr . "`gc"
+endfunction
+" }}}
+" }}}
 
 " Abbreviations: Insert mode {{{
 " replace @@<space> with email (when in insert mode) 
@@ -169,3 +196,7 @@ augroup END
 " }}}
 " run exuberant ctags externally and create tags file in .git folder
 nnoremap <leader>ctags :!ctags -R -f ./.git/tags .<cr>
+
+" Html boilerplate
+let @h = 'i<!DOCTYPE html><html><head></head>O	<title>Title<t€kb/title>Go<body></body></html>jkko	'
+
