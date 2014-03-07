@@ -1,7 +1,6 @@
 set nu
 set runtimepath+=$HOME/.vim/tagbar
 set tabstop=3
-source ~/.vim/syntax/scala.vim
 syntax on
 
 
