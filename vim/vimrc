@@ -74,6 +74,8 @@ function! SplitAtStringFunc(splitStr)
 	call ReplaceStringFunc(a:splitStr, "\r")
 endfunction
 " }}}
+" highlight trailing whitespace
+nnoremap <leader>w /\v\s+$<cr>
 " }}}
 
 " Key mappings: Visual mode {{{ 
