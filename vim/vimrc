@@ -76,6 +76,14 @@ endfunction
 " }}}
 " highlight trailing whitespace
 nnoremap <leader>w /\v\s+$<cr>
+" Grep for the word under the cursor
+nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
+" Move to next grep result 
+nnoremap <leader>cn :cnext<cr>
+" Move to previous grep result
+nnoremap <leader>cp :cprevious<cr>
+" Close grep results window
+nnoremap <leader>cc :cclose<cr>
 " }}}
 
 " Key mappings: Visual mode {{{ 
