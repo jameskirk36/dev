@@ -83,7 +83,7 @@ vnoremap <leader>vw <esc>:VisualWrap<space>
 command! -nargs=* VisualWrap call WrapFunc(<f-args>)
 " helper function for visual wrap (above)
 function! WrapFunc(start, end)
-	execute "normal `<i" . a:start . "\<esc>`>la" . a:end . "\<esc>"
+	execute "normal! `<i" . a:start . "\<esc>`>la" . a:end . "\<esc>"
 endfunction
 " }}}
 " Replace strings in visual selection {{{
@@ -119,7 +119,7 @@ augroup GenericCommenting
 	autocmd FileType cs,cpp,javascript,scala let b:comment = "//"
 	
 	" comment current line using comment variable set by current buffer filetype
-	autocmd FileType * nnoremap <buffer> <leader>cl :<c-u>execute "normal I" . b:comment<cr>
+	autocmd FileType * nnoremap <buffer> <leader>cl :<c-u>execute "normal! I" . b:comment<cr>
 	" language specific comment-visual selection
 	"autocmd FileType cpp,cs,javascript,scala vnoremap <buffer> <leader>cv <esc>`<i/*<esc>`>2la*/<esc>
 augroup END
