@@ -1,3 +1,5 @@
+execute pathogen#infect()
+
 set nu
 set runtimepath+=$HOME/.vim/tagbar
 set tabstop=3
@@ -52,10 +54,10 @@ set hlsearch " highlight search results
 let mapleader="-"
 " Key mappings: All Modes {{{
 " Disable the left,right,up,down arrows 
-noremap <left> <nop>
-noremap <right> <nop>
-noremap <up> <nop>
-noremap <down> <nop>
+" noremap <left> <nop>
+" noremap <right> <nop>
+" noremap <up> <nop>
+" noremap <down> <nop>
 " }}}
 
 " Key mappings: normal mode {{{ 
@@ -197,6 +199,13 @@ augroup JavascriptSpecific
 augroup END
 " }}}
 
+" HTML specific {{{
+augroup HTMLSpecific
+	autocmd!
+	" create empty attribute placeholders when encountering =<space> in insert mode
+	autocmd FileType html execute "iabbrev <buffer> = =\"\"<left>"
+augroup END
+" }}}
 " Example Operator mappings {{{
 augroup OperatorMappings
 	" inside heading example
@@ -209,3 +218,7 @@ nnoremap <leader>ctags :!ctags -R -f ./.git/tags .<cr>
 " Html boilerplate
 let @h = 'i<!DOCTYPE html><html><head></head>O	<title>Title<t€kb/title>Go<body></body></html>jkko	'
 
+" FuzzyFinder plugin command mappings {{{
+nnoremap <leader>ob :FuzzyFinderBuffer<cr>
+nnoremap <leader>of :FuzzyFinderFile <cr>
+" }}}
