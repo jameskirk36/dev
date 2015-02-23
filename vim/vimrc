@@ -3,6 +3,7 @@ execute pathogen#infect()
 set nu
 set runtimepath+=$HOME/.vim/tagbar
 set tabstop=3
+set ff=unix
 syntax on
 
 
