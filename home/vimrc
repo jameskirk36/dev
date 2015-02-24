@@ -4,6 +4,7 @@ set nu
 set runtimepath+=$HOME/.vim/tagbar
 set tabstop=3
 set noswapfile
+set ff=unix
 set ic
 syntax on
 
