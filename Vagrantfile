@@ -1,6 +1,16 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+require 'json'
+
+config_file = ENV["config"] || './config.json'
+
+if not File.exists? config_file
+  abort "ERROR: Missing configuration file: #{config_file}"
+end
+
+setup = JSON.load(IO.read(config_file));
+
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -10,6 +20,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.memory = 1024
     v.cpus = 1
   end
+
+  if setup.has_key? 'synced_folders'
+    setup["synced_folders"].each do |sync|
+      config.vm.synced_folder sync["src"], sync["dest"]
+    end
+  end
+
   config.vm.hostname = "dev-env"
   config.vm.provision :file, source: "./home/vim", destination: "~/.vim"
   config.vm.provision :file, source: "./home/vimrc", destination: "~/.vimrc"
