@@ -1,0 +1,13 @@
+{
+  "synced_folders": [
+    {
+      "src": "/somewhere/folder1",
+      "dest": "/home/vagrant/folder1"
+    },
+    {
+      "src": "/somewhere/folder2",
+      "dest": "/home/vagrant/folder2"
+    }
+  ]
+}
+
