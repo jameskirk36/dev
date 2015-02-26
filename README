@@ -1,16 +1,26 @@
-DEV ENVIRONMENT SETUP INSTRUCTIONS
+# Development environment
 
-REPO = the root location of this git repository
+## Setting up with Vagrant
 
-1. HOW TO SETUP BASH SHELL
+### Prerequisites
 
-Just add the following line to your current ~/.bash_profile or other variant file:
+You will need to have the following software installed on your development machine: 
+* Virtualbox
+* Vagrant 
 
-source $REPO/shell/bash_dev_rc
+I suggest you use your native/favourite package manager to install these (for windows see [chocolately](https://chocolatey.org/), Mac OSX: [homebrew](), linux: apt-get :))
 
-1. HOW TO SETUP VIM SETTINGS
 
-Just add the following line to your current ~/.vimrc (Linux) or ~/_vimrc (windows):
+### Configuration
 
-source $REPO/vim/vimrc
+Create a config.json file with synced_folders section configured for a folder you wish to develop in. (for an example - see the sample.config.json)
 
+### Setup
+
+Open a terminal or command prompt and change directory to the root directory of your working copy of this repository.
+
+Then run the command:
+
+```Batchfile
+vagrant up
+```
