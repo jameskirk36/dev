@@ -15,7 +15,19 @@ I suggest you use your native/favourite package manager to install these (for wi
 
 ### Configuration
 
-Create a config.json file with synced_folders section configured for a folder you wish to develop in. (for an example - see the sample.config.json)
+Create a devenv.config.json file with synced_folders section configured for a folder you wish to develop in. (for an example - see the sample.config.json)
+
+Now set an environment variable called 'config' with the path to your devenv.config.json i.e
+
+Windows:
+```
+set config=PATH_TO_CONFIG
+```
+
+Linux/Mac:
+```
+export config=PATH_TO_CONFIG
+```
 
 ### Setup
 
