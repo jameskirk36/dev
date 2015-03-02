@@ -28,6 +28,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.hostname = "dev-env"
-  config.vm.provision :file, source: "./home/vim", destination: "~/.vim"
-  config.vm.provision :file, source: "./home/vimrc", destination: "~/.vimrc"
+  config.vm.provision :shell, path: "bootstrap.sh"
 end
