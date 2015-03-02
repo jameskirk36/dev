@@ -8,6 +8,10 @@
       "src": "/somewhere/folder2",
       "dest": "/home/vagrant/folder2"
     }
-  ]
+  ],
+  "git": {
+    "name": "",
+    "email": ""
+  }
 }
 
