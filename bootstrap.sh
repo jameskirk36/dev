@@ -40,4 +40,4 @@ symlink_dir(){
   fi
 }
 
-main "$1" "$2"
+main

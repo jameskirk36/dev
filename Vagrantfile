@@ -27,8 +27,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  script_args =  "'#{setup['git']['name']}' '#{setup['git']['email']}'"
-
   config.vm.hostname = "dev-env"
-  config.vm.provision "shell", path: "bootstrap.sh", args: script_args
+  config.vm.provision "shell", path: "bootstrap.sh"
 end
