@@ -27,7 +27,7 @@ if has("gui_running")
 	set guifont=Lucida_Console:h11
 	colorscheme slate
 	" Search colour
-	highlight Search guibg=Yellow guifg=Black
+	highlight Search guibg=White guifg=Black 
 	" Folded fold colour
 	highlight Folded guibg=Black guifg=Blue
 	" Word completion menu colour
@@ -37,8 +37,9 @@ if has("gui_running")
 " }}}
 else
 " Console {{{
+   hi StatusLine ctermbg=Black ctermfg=White
 	" Search colour
-	highlight Search ctermbg=Yellow ctermfg=Black 
+	highlight Search ctermbg=White ctermfg=Black 
 	" Folded fold colour
 	highlight Folded ctermbg=Black ctermfg=Blue
 	" Word completion menu colour
@@ -54,6 +55,11 @@ set incsearch " enable incremental search highlighting
 set hlsearch " highlight search results 
 " }}}
 " Key mappings 
+
+" Unite key mappings {{{
+nnoremap <C-p> :Unite file_rec/async<cr>
+" }}}
+
 let mapleader="-"
 " Key mappings: All Modes {{{
 " Disable the left,right,up,down arrows 
