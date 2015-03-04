@@ -9,6 +9,8 @@ main(){
   link_bash_files
   link_vim_files
   link_git_files
+  clone_git_submodules
+  vim_plugin_vimproc_make
 }
 
 install_git(){
@@ -26,6 +28,20 @@ link_vim_files(){
 
 link_git_files(){
   symlink_file $srcDir/gitconfig $destDir/.gitconfig
+}
+
+clone_git_submodules(){
+  pushd .
+  cd $srcDir
+  git submodule update --init
+  popd
+}
+
+vim_plugin_vimproc_make(){
+  pushd .
+  cd $srcDir/vim/bundle/vimproc.vim
+  make
+  popd
 }
 
 symlink_file(){
