@@ -2,7 +2,7 @@ execute pathogen#infect()
 
 set nu
 set runtimepath+=$HOME/.vim/tagbar
-set tabstop=3
+set tabstop=4
 set noswapfile
 set ff=unix
 set ic
@@ -146,12 +146,12 @@ augroup END
 " Unite key mappings {{{
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
-nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-nnoremap <leader>e :<C-u>Unite -no-split -quick-match buffer<cr>
+nnoremap <leader>t :<C-u>Unite -start-insert file_rec/async:!<cr>
+nnoremap <leader>f :<C-u>Unite -start-insert file<cr>
+nnoremap <leader>r :<C-u>Unite -start-insert file_mru<cr>
+nnoremap <leader>o :<C-u>Unite -start-insert outline<cr>
+nnoremap <leader>y :<C-u>Unite history/yank<cr>
+nnoremap <leader>e :<C-u>Unite -start-insert buffer<cr>
 nnoremap <leader>g :<C-U>Unite grep:.<cr>
 
 " Custom mappings for the unite buffer
