@@ -5,16 +5,13 @@ destDir=/home/vagrant
 
 main(){
   apt-get update
-  install_git
+  apt-get -y install git
+  apt-get -y install silversearcher-ag
   link_bash_files
   link_vim_files
   link_git_files
   clone_git_submodules
   vim_plugin_vimproc_make
-}
-
-install_git(){
-  apt-get -y install git
 }
 
 link_bash_files(){

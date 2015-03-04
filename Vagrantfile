@@ -18,7 +18,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider "virtualbox" do |v|
     v.name = "dev-env"
     v.memory = 1024
-    v.cpus = 1
+    v.cpus = 2
   end
 
   if setup.has_key? 'synced_folders'
