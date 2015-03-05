@@ -6,11 +6,11 @@ destDir=/home/vagrant
 main(){
   apt-get update
   apt-get -y install git
-  apt-get -y install silversearcher-ag
   link_bash_files
   link_vim_files
   link_git_files
   clone_git_submodules
+  install_vim_plugins
   vim_plugin_vimproc_make
 }
 
@@ -32,6 +32,10 @@ clone_git_submodules(){
   cd $srcDir
   git submodule update --init
   popd
+}
+
+install_vim_plugins(){
+  vim +PluginInstall +qall
 }
 
 vim_plugin_vimproc_make(){
