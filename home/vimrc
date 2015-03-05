@@ -2,7 +2,7 @@ execute pathogen#infect()
 
 set nu
 set runtimepath+=$HOME/.vim/tagbar
-set tabstop=4
+set tabstop=4 expandtab
 set noswapfile
 set ff=unix
 set ic
@@ -48,6 +48,25 @@ else
 	highlight PmenuSel ctermbg=White ctermfg=Black
 " }}}
 end
+" }}}
+
+" Diff colorscheme {{{
+augroup DiffColors
+	" clear autocommands in group
+	au! 
+    au FilterWritePre * if &diff | call ConfigureForDiff() | endif
+    au BufWinLeave * call ConfigureForNormal()
+function! ConfigureForDiff()
+    highlight DiffAdd cterm=none ctermfg=Green ctermbg=Black gui=none guifg=bg guibg=Green
+    highlight DiffDelete cterm=none ctermfg=Red ctermbg=Black gui=none guifg=bg guibg=Red
+    highlight DiffChange cterm=none ctermfg=Yellow ctermbg=Black gui=none guifg=bg guibg=Yellow
+    highlight DiffText cterm=none ctermfg=Magenta ctermbg=Black gui=none guifg=bg guibg=Magenta
+    syntax off
+endfunction
+function! ConfigureForNormal()
+    syntax on
+endfunction
+augroup END
 " }}}
 	
 " Searching {{{
