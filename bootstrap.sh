@@ -14,6 +14,8 @@ main(){
     clone_git_submodules
     install_vim_plugins
     vim_plugin_vimproc_make
+
+    print_super_crab
   fi
 }
 
@@ -71,10 +73,13 @@ symlink_dir(){
   fi
 }
 
+function print_super_crab(){
+  echo "   _      _  " 
+  echo "  (<      >) "
+  echo "   'O,99,O'  "
+  echo "  //-\__/-\\ " 
+  echo "Dev environment ready!"
+}
+
 main
 
-echo "   _      _  " 
-echo "  (<      >) "
-echo "   'O,99,O'  "
-echo "  //-\__/-\\ " 
-echo "Dev environment ready!"
