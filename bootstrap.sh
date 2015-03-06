@@ -4,22 +4,26 @@ srcDir=/vagrant/home
 destDir=/home/vagrant
 
 main(){
-  switch_to_vagrant_user
-  apt-get update
-  apt-get -y install git
-  link_bash_files
-  link_vim_files
-  link_git_files
-  clone_git_submodules
-  install_vim_plugins
-  vim_plugin_vimproc_make
+  if ( we_are_root ) then
+    switch_to_vagrant_user
+    apt-get update
+    apt-get -y install git
+    link_bash_files
+    link_vim_files
+    link_git_files
+    clone_git_submodules
+    install_vim_plugins
+    vim_plugin_vimproc_make
+  fi
+}
+
+we_are_root(){
+  uid=$(id -u)
+  [ $uid -eq 0 ] 
 }
 
 switch_to_vagrant_user(){
-  uid=$(id -u)
-  if [ $uid -eq 0 ]; then 
-    sudo -u vagrant -i $0 "$@"
-  fi
+  sudo -u vagrant -i $0 "$@"
 }
 
 link_bash_files(){

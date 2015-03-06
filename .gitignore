@@ -1,2 +1,3 @@
 .vagrant/
+.netrwhist
 home/vim/bundle/*
