@@ -14,6 +14,7 @@ Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'amdt/vim-niji'
 Plugin 'scrooloose/nerdtree'
+Plugin 'bling/vim-airline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -26,6 +27,11 @@ filetype plugin indent on    " required
 let mapleader="-"
 
 " Plugin specific settings {{{
+" Airline {{{
+if !exists(':Airline')
+  let g:airline_powerline_fonts = 1
+endif
+" }}}
 " Unite {{{
 if !exists(":Unite")
   let g:unite_source_history_yank_enable = 1
