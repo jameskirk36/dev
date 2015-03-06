@@ -4,14 +4,22 @@ srcDir=/vagrant/home
 destDir=/home/vagrant
 
 main(){
+  switch_to_vagrant_user
   apt-get update
   apt-get -y install git
-  apt-get -y install silversearcher-ag
   link_bash_files
   link_vim_files
   link_git_files
   clone_git_submodules
+  install_vim_plugins
   vim_plugin_vimproc_make
+}
+
+switch_to_vagrant_user(){
+  uid=$(id -u)
+  if [ $uid -eq 0 ]; then 
+    sudo -u vagrant -i $0 "$@"
+  fi
 }
 
 link_bash_files(){
@@ -34,10 +42,16 @@ clone_git_submodules(){
   popd
 }
 
+install_vim_plugins(){
+  echo 'installing vim plugins'
+  vim +PluginInstall +qa &>/dev/null
+  echo 'finished installing vim plugins'
+}
+
 vim_plugin_vimproc_make(){
   pushd .
   cd $srcDir/vim/bundle/vimproc.vim
-  make
+  make 
   popd
 }
 
@@ -54,3 +68,9 @@ symlink_dir(){
 }
 
 main
+
+echo "   _      _  " 
+echo "  (<      >) "
+echo "   'O,99,O'  "
+echo "  //-\__/-\\ " 
+echo "Dev environment ready!"
