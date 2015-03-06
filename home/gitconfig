@@ -3,3 +3,5 @@
 	email = james.kirk84@gmail.com
 [color]
 	ui = true
+[alias]
+    lg = log --graph --abbrev-commit --decorate --date=relative --all
