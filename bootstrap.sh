@@ -4,28 +4,16 @@ srcDir=/vagrant/home
 destDir=/home/vagrant
 
 main(){
-  if ( we_are_root ) then
-    switch_to_vagrant_user
-    apt-get update
-    apt-get -y install git
-    link_bash_files
-    link_vim_files
-    link_git_files
-    clone_git_submodules
-    install_vim_plugins
-    vim_plugin_vimproc_make
+  sudo apt-get update
+  sudo apt-get -y install git
+  link_bash_files
+  link_vim_files
+  link_git_files
+  clone_git_submodules
+  install_vim_plugins
+  vim_plugin_vimproc_make
 
-    print_super_crab
-  fi
-}
-
-we_are_root(){
-  uid=$(id -u)
-  [ $uid -eq 0 ] 
-}
-
-switch_to_vagrant_user(){
-  sudo -u vagrant -i $0 "$@"
+  print_super_crab
 }
 
 link_bash_files(){
@@ -81,5 +69,14 @@ function print_super_crab(){
   echo "Dev environment ready!"
 }
 
-main
-
+# start here
+echo "Running as user: "
+whoami
+  
+uid=$(id -u)
+if [ $uid -eq 0 ]; then
+  echo "Switching to user: vagrant"
+  sudo -u vagrant -i $0 "$@"  
+else
+  main
+fi
