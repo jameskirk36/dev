@@ -28,12 +28,12 @@ let mapleader="-"
 
 " Plugin specific settings {{{
 " Airline {{{
-if !exists(':Airline')
+if exists(':Airline')
   let g:airline_powerline_fonts = 1
 endif
 " }}}
 " Unite {{{
-if !exists(":Unite")
+if exists(":Unite")
   let g:unite_source_history_yank_enable = 1
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
   nnoremap <leader>t :<C-u>Unite -start-insert file_rec/async:!<cr>
@@ -42,7 +42,7 @@ if !exists(":Unite")
   nnoremap <leader>o :<C-u>Unite -start-insert outline<cr>
   nnoremap <leader>y :<C-u>Unite history/yank<cr>
   nnoremap <leader>e :<C-u>Unite -start-insert buffer<cr>
-  nnoremap <leader>g :<C-U>Unite grep:.<cr>
+  nnoremap <leader>g :<C-U>Unite -start-insert grep:!<cr>
   
   " Custom mappings for the unite buffer
   autocmd FileType unite call s:unite_settings()
@@ -57,7 +57,7 @@ endif
 " }}}
 
 " NERDTree {{{
-if !exists(":NERDTree") 
+if exists(":NERDTree") 
   " open browser in current working directory
   nnoremap <leader>n :NERDTree .<cr>
   " show current file in nerdtree
@@ -74,16 +74,6 @@ set ff=unix
 set ic
 syntax on
 
-
-" Status Line -------------------------------- {{{
-set noruler 
-set laststatus=2 			"turn statusline on
-set statusline=%.40f          " relative path to the file (limit of 40 chars)
-set statusline+=\ %y        " Filetype of the file
-set statusline+=\ %h%m%r   " display flags
-set statusline+=%=     " switch to the right hand side
-set statusline+=Current:\ %-4l\ Total:\ %-4L " current and total lines
-" }}}
 
 " Layout and Colours {{{
 if has("gui_running")
@@ -103,7 +93,6 @@ if has("gui_running")
 " }}}
 else
 " Console {{{
-   hi StatusLine ctermbg=Black ctermfg=White
 	" Search colour
 	highlight Search ctermbg=White ctermfg=Black 
 	" Folded fold colour
