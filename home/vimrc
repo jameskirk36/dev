@@ -69,6 +69,7 @@ endif
 set nu
 set runtimepath+=$HOME/.vim/tagbar
 set tabstop=4 expandtab
+set shiftwidth=4
 set noswapfile
 set ff=unix
 set ic

@@ -16,7 +16,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/trusty64"
   config.vm.provider "virtualbox" do |v|
-    v.name = "dev-env"
+    v.name = "dev-env2"
     v.memory = 1024
     v.cpus = 2
   end
@@ -27,6 +27,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  config.vm.hostname = "dev-env"
+  config.vm.hostname = "dev-env2"
   config.vm.provision "shell", path: "bootstrap.sh"
 end

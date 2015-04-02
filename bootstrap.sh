@@ -5,7 +5,7 @@ destDir=/home/vagrant
 
 main(){
   sudo apt-get update
-  sudo apt-get -y install git
+  sudo apt-get -y install git ruby1.9-dev rubygems bundler
   link_bash_files
   link_vim_files
   link_git_files
