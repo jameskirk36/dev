@@ -47,11 +47,7 @@
 #10. directory writable to others, with sticky bit
 #11. directory writable to others, without sticky
 
-export CLICOLOR=1
-export LSCOLORS=fxCxCxDaBxegedabagaced
-
 # LS_COLORS
-#LS_COLORS='di=1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:*.deb=90'
 #The parameters for LS_COLORS (di, fi, ln, pi, etc) refer to different file types:
 #
 #di	 Directory
@@ -67,7 +63,7 @@ export LSCOLORS=fxCxCxDaBxegedabagaced
 #
 #The *.deb=90 parameter in the example above tells ls to display any files ending with a .deb extension using the color specified, 90 or dark grey in this case. This can be applied to any types of files (eg. you could use *.jpg=33 to make JPEG files appear orange). Any number of parameters can go into the LS_COLORS variable, as long as the parameters are separated by colons.
 
-LS_COLORS='di=35;1:ln=36;1:ex=31;1'
+LS_COLORS='di=32;40:ln=36;1:ex=31;1'
 export LS_COLORS
 
 alias ll="ls -l"
