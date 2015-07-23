@@ -294,4 +294,4 @@ augroup OperatorMappings
 augroup END
 " }}}
 " run exuberant ctags externally and create tags file in .git folder
-nnoremap <leader>ctags :!ctags -R -f ./.git/tags .<cr>
+nnoremap <leader>ctags :!ctags -R --tag-relative -f ./.git/tags .<cr>
