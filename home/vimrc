@@ -38,7 +38,6 @@ if exists(":Unite")
   let g:unite_source_history_yank_enable = 1
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
   nnoremap <leader>t :<C-u>Unite -start-insert file_rec/async:!<cr>
-  nnoremap <leader>f :<C-u>Unite -start-insert file<cr>
   nnoremap <leader>r :<C-u>Unite -start-insert file_mru<cr>
   nnoremap <leader>o :<C-u>Unite -start-insert outline<cr>
   nnoremap <leader>y :<C-u>Unite history/yank<cr>
@@ -69,8 +68,7 @@ endif
 
 set nu
 set runtimepath+=$HOME/.vim/tagbar
-set tabstop=4 expandtab
-set shiftwidth=4
+set tabstop=4 expandtab shiftwidth=4
 set noswapfile
 set ff=unix
 set ic
@@ -234,11 +232,24 @@ augroup RubySpecific
 	autocmd BufRead,BufNewFile *.rspec set filetype=ruby
 	" comment char
 	autocmd FileType ruby let b:comment = "#"
+	autocmd FileType ruby set tabstop=2 shiftwidth=2
 		
 	" run rspec on current file
 	autocmd FileType ruby nnoremap <buffer> <leader>rt :!rspec<space><c-r>%<cr>
 	" new test
 	autocmd FileType ruby nnoremap <buffer> <leader>nt Idescribe<space>func<space>do<cr>end<esc>?func<cr>
+augroup END
+" }}}
+" F# specific {{{
+augroup FSharp
+	" clear autocommands in group
+	autocmd!
+	" comment char
+	autocmd FileType fsharp let b:comment = "//"
+	autocmd FileType fsharp set tabstop=2 shiftwidth=2
+
+	" run fsharpi on current file
+	autocmd FileType fsharp nnoremap <buffer> <leader>fsi :!fsharpi<space><c-r>%<cr>
 augroup END
 " }}}
 
