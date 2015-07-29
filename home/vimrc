@@ -42,7 +42,7 @@ if exists(":Unite")
   nnoremap <leader>o :<C-u>Unite -start-insert outline<cr>
   nnoremap <leader>y :<C-u>Unite history/yank<cr>
   nnoremap <leader>e :<C-u>Unite -start-insert buffer<cr>
-  nnoremap <leader>g :<C-U>Unite -start-insert grep:!<cr>
+  nnoremap <leader>g :Unite grep:.<cr>
   
   " Custom mappings for the unite buffer
   autocmd FileType unite call s:unite_settings()
@@ -201,6 +201,13 @@ endfunction
 iabbrev @@ james.kirk84@gmail.com
 " }}}
 
+" spacing {{{
+augroup SpacingSettings
+    autocmd!
+    autocmd FileType ruby,fsharp,yaml set tabstop=2 shiftwidth=2
+augroup END
+" }}}
+
 
 " language specific comment-line {{{
 augroup GenericCommenting
@@ -232,7 +239,6 @@ augroup RubySpecific
 	autocmd BufRead,BufNewFile *.rspec set filetype=ruby
 	" comment char
 	autocmd FileType ruby let b:comment = "#"
-	autocmd FileType ruby set tabstop=2 shiftwidth=2
 		
 	" run rspec on current file
 	autocmd FileType ruby nnoremap <buffer> <leader>rt :!rspec<space><c-r>%<cr>
@@ -246,7 +252,6 @@ augroup FSharp
 	autocmd!
 	" comment char
 	autocmd FileType fsharp let b:comment = "//"
-	autocmd FileType fsharp set tabstop=2 shiftwidth=2
 
 	" run fsharpi on current file
 	autocmd FileType fsharp nnoremap <buffer> <leader>fsi :!fsharpi<space><c-r>%<cr>

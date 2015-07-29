@@ -5,3 +5,5 @@
 	ui = true
 [alias]
     lg = log --graph --abbrev-commit --decorate --date=relative --all
+[core]
+	autocrlf = false
