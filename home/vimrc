@@ -42,7 +42,7 @@ if exists(":Unite")
   nnoremap <leader>o :<C-u>Unite -start-insert outline<cr>
   nnoremap <leader>y :<C-u>Unite history/yank<cr>
   nnoremap <leader>e :<C-u>Unite -start-insert buffer<cr>
-  nnoremap <leader>g :Unite grep:.<cr>
+  nnoremap <space>/ :Unite -auto-preview grep:.<cr>
   
   " Custom mappings for the unite buffer
   autocmd FileType unite call s:unite_settings()
