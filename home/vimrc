@@ -1,28 +1,16 @@
-" Vundle {{{
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" {{{ Vim-plug
+call plug#begin('~/.vim/plugged')
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+Plug 'gmarik/Vundle.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'bling/vim-airline'
+Plug 'fsharp/vim-fsharp', { 'for' : 'fsharp', 'do' : 'make' }
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-Plugin 'tpope/vim-fugitive'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'amdt/vim-niji'
-Plugin 'scrooloose/nerdtree'
-Plugin 'bling/vim-airline'
-Plugin 'kongo2002/fsharp-vim'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
+call plug#end()
 " }}}
 
 let mapleader="-"
@@ -37,11 +25,11 @@ endif
 if exists(":Unite")
   let g:unite_source_history_yank_enable = 1
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
-  nnoremap <leader>t :<C-u>Unite -start-insert file_rec/async:!<cr>
+  nnoremap <leader>ff :<C-u>Unite -start-insert file_rec/async:!<cr>
   nnoremap <leader>r :<C-u>Unite -start-insert file_mru<cr>
   nnoremap <leader>o :<C-u>Unite -start-insert outline<cr>
   nnoremap <leader>y :<C-u>Unite history/yank<cr>
-  nnoremap <leader>e :<C-u>Unite -start-insert buffer<cr>
+  nnoremap <leader>fb :<C-u>Unite -start-insert buffer<cr>
   nnoremap <space>/ :Unite -auto-preview grep:.<cr>
   
   " Custom mappings for the unite buffer

@@ -5,13 +5,11 @@ destDir=/home/vagrant
 
 main(){
   sudo apt-get update
-  sudo apt-get -y install git ruby1.9.1-dev ruby1.9.1 bundler ctags mono-complete fsharp
+  sudo apt-get -y install unzip git ruby1.9.1-dev ruby1.9.1 bundler ctags mono-complete fsharp 
   link_bash_files
   link_vim_files
   link_git_files
-  clone_git_submodules
   install_vim_plugins
-  vim_plugin_vimproc_make
 
   print_super_crab
 }
@@ -29,24 +27,10 @@ link_git_files(){
   symlink_file $srcDir/gitconfig $destDir/.gitconfig
 }
 
-clone_git_submodules(){
-  pushd .
-  cd $srcDir
-  git submodule update --init
-  popd
-}
-
 install_vim_plugins(){
   echo 'installing vim plugins'
-  vim +PluginInstall +qa &>/dev/null
+  vim +PlugInstall +qa &>/dev/null
   echo 'finished installing vim plugins'
-}
-
-vim_plugin_vimproc_make(){
-  pushd .
-  cd $srcDir/vim/bundle/vimproc.vim
-  make 
-  popd
 }
 
 symlink_file(){
